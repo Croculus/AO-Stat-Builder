@@ -1,8 +1,18 @@
-.slidecontainer {
-    width: 100%;
-  }
+*{
   
-  .slider {
+}
+.container{
+  text-align: center;
+}
+.slidecontainer {
+    width: 50%;
+    margin: auto;
+    text-align: left;
+  }
+
+
+  
+.slider {
     -webkit-appearance: none;
     appearance: none;
     width: 100%;
@@ -39,5 +49,4 @@
   .slider > span, .slider > label {
       flex: 1 1 50px;
   }
-
 
