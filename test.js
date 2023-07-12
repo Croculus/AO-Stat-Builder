@@ -20,7 +20,7 @@ function limitCheck(map, limit){
 
 }
 
-function updateStats(index, e) {
+function updateStats() {
     var newStats = stats
     newStats.set('vitality', sliders[0].valueAsNumber);
     newStats.set('magic', sliders[1].valueAsNumber);
@@ -32,6 +32,6 @@ function updateStats(index, e) {
 }
 function load(){
     for( let i = 0; i < sliders.length; i++){
-        sliders[i].oninput = updateStats(i, this);
+        sliders[i].oninput = updateStats;
     }
 }
