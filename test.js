@@ -21,13 +21,13 @@ function limitCheck(map, limit){
 }
 
 function updateStats() {
-    var newStats = stats
-    newStats.set('vitality', sliders[0].valueAsNumber);
-    newStats.set('magic', sliders[1].valueAsNumber);
-    newStats.set('weapons', sliders[2].valueAsNumber);
-    newStats.set('strength', sliders[3].valueAsNumber);
+    var newStats = new Map(stats);
+    newStats.set(this.id, this.valueAsNumber);
     if (!limitCheck(newStats, statpoints))
         stats = newStats;
+    else
+        this.valueAsNumber = stats.get(this.id);
+    document.getElementById(this.id+'-text').value = this.value;
     console.log(stats);
 }
 function load(){
