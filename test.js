@@ -20,7 +20,7 @@ function limitCheck(map, limit){
 
 }
 
-function updateStats() {
+function sliderUpdate() {
     var newStats = new Map(stats);
     newStats.set(this.id, this.valueAsNumber);
     if (!limitCheck(newStats, statpoints))
@@ -30,8 +30,28 @@ function updateStats() {
     document.getElementById(this.id+'-text').value = this.value;
     console.log(stats);
 }
+
+function textUpdate() {
+    const int = parseInt(this.value);
+    const id = this.id.replace('-text', '')
+    if(!isNaN(int)){
+        var newStats = new Map(stats);
+        newStats.set(id, int);
+        if (!limitCheck(newStats, statpoints)){
+            stats = newStats;
+            document.getElementById(id).value = int;
+        }
+        else
+            this.value = String(stats.get(id));
+        console.log(stats);
+    }
+}
+
+
 function load(){
     for( let i = 0; i < sliders.length; i++){
-        sliders[i].oninput = updateStats;
+        sliders[i].oninput = sliderUpdate;
+        document.getElementsByClassName('input-text')[i].oninput = textUpdate;
     }
+
 }
