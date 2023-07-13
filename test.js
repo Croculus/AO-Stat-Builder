@@ -47,6 +47,9 @@ function textUpdate() {
     }
 }
 
+function build(){
+
+}
 
 function load(){
     for( let i = 0; i < sliders.length; i++){
