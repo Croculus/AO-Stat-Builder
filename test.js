@@ -32,19 +32,19 @@ function sliderUpdate() {
 }
 
 function textUpdate() {
-    const int = parseInt(this.value);
+    const int = Math.abs(parseInt(this.value));
     const id = this.id.replace('-text', '')
-    if(!isNaN(int)){
-        var newStats = new Map(stats);
-        newStats.set(id, int);
-        if (!limitCheck(newStats, statpoints)){
-            stats = newStats;
-            document.getElementById(id).value = int;
-        }
-        else
-            this.value = String(stats.get(id));
-        console.log(stats);
+    var newStats = new Map(stats);
+    
+    newStats.set(id, int);
+    if (!limitCheck(newStats, statpoints)){
+        stats = newStats;
+        document.getElementById(id).value = int;
     }
+    else
+        this.value = String(stats.get(id));
+    console.log(stats);
+    
 }
 
 function build(){
