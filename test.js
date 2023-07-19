@@ -29,13 +29,14 @@ function sliderUpdate() {
         this.valueAsNumber = stats.get(this.id);
     document.getElementById(this.id+'-text').value = this.value;
     console.log(stats);
+    build();
 }
 
 function textUpdate() {
     const int = Math.abs(parseInt(this.value));
     const id = this.id.replace('-text', '')
     var newStats = new Map(stats);
-    
+
     newStats.set(id, int);
     if (!limitCheck(newStats, statpoints)){
         stats = newStats;
@@ -44,11 +45,13 @@ function textUpdate() {
     else
         this.value = String(stats.get(id));
     console.log(stats);
+    build();
     
 }
 
 function build(){
-
+    //implement build math
+    document.getElementById('build').innerHTML = "New Rext";
 }
 
 function load(){
