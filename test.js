@@ -51,7 +51,31 @@ function textUpdate() {
 
 function build(){
     //implement build math
-    document.getElementById('build').innerHTML = "New Rext";
+    if (stats.get('vitality') > (statpoints*0.6))
+        document.getElementById('build').innerHTML = "Warden";
+    else if (stats.get('magic') > (statpoints*0.6))
+        document.getElementById('build').innerHTML = "Mage";
+    else if (stats.get('weapons') > (statpoints*0.6))
+        document.getElementById('build').innerHTML = "Warrior";
+    else if (stats.get('strength') > (statpoints*0.6))
+        document.getElementById('build').innerHTML = "Bezerker";
+
+    else if (stats.get('vitality') > (statpoints*0.4) && stats.get('magic') > (statpoints*0.4))
+        document.getElementById('build').innerHTML = "Paladin";    
+    else if (stats.get('vitality') > (statpoints*0.4) && stats.get('weapons') > (statpoints*0.4))
+        document.getElementById('build').innerHTML = "Knight";
+    else if (stats.get('vitality') > (statpoints*0.4) && stats.get('strength') > (statpoints*0.4))
+        document.getElementById('build').innerHTML = "Juggernaut";
+        
+    else if (stats.get('magic') > (statpoints*0.4) && stats.get('weapons') > (statpoints*0.4))
+        document.getElementById('build').innerHTML = "Conjurer";
+    else if (stats.get('magic') > (statpoints*0.4) && stats.get('strength') > (statpoints*0.4))
+        document.getElementById('build').innerHTML = "Warlock";      
+
+    else if (stats.get('weapons') > (statpoints*0.4) && stats.get('strength') > (statpoints*0.4))
+        document.getElementById('build').innerHTML = "Warlord"; 
+    else
+        document.getElementById('build').innerHTML = "Savant"; 
 }
 
 function load(){
