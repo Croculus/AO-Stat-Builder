@@ -10,6 +10,7 @@ var sliders = document.getElementsByClassName('slider');
 var basehp = 968+(2*stats.get('vitality'));
 
 
+
 function limitCheck(map, limit){
     var sum = 0;
     map.forEach(element => {
@@ -29,7 +30,7 @@ function sliderUpdate() {
         this.valueAsNumber = stats.get(this.id);
     document.getElementById(this.id+'-text').value = this.value;
     console.log(stats);
-    build();
+    build_calc();
 }
 
 function textUpdate() {
@@ -45,20 +46,20 @@ function textUpdate() {
     else
         this.value = String(stats.get(id));
     console.log(stats);
-    build();
+    build_calc();
     
 }
 
-function build(){
+function build_calc(){
     //implement build math
     if (stats.get('vitality') > (statpoints*0.6))
-        document.getElementById('build').innerHTML = "Warden";
+        build("Warden");
     else if (stats.get('magic') > (statpoints*0.6))
-        document.getElementById('build').innerHTML = "Mage";
+        build("Warden");
     else if (stats.get('weapons') > (statpoints*0.6))
-        document.getElementById('build').innerHTML = "Warrior";
+        build("Warden");
     else if (stats.get('strength') > (statpoints*0.6))
-        document.getElementById('build').innerHTML = "Bezerker";
+        build("Warden");
 
     else if (stats.get('vitality') >= (statpoints*0.4) && stats.get('magic') >= (statpoints*0.4))
         document.getElementById('build').innerHTML = "Paladin";    
@@ -78,6 +79,12 @@ function build(){
         document.getElementById('build').innerHTML = "Savant"; 
 }
 
+function build(text){
+    const builds = JSON.parse(fetch("./builds.json"));
+    color = builds[text].color;
+    document.getElementById('build').innerHTML = text;
+    document.getElementById('build').style.color = color;
+}
 function load(){
     for( let i = 0; i < sliders.length; i++){
         sliders[i].oninput = sliderUpdate;
