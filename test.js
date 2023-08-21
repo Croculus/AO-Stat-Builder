@@ -21,6 +21,16 @@ function limitCheck(map, limit){
 
 }
 
+async function fetchJSONData(url) {
+    try {
+      const response = await fetch(url);
+      const jsonData = await response.json();
+      return jsonData;
+    } catch (error) {
+      console.error("Error fetching JSON:", error);
+    }
+  }
+
 function sliderUpdate() {
     var newStats = new Map(stats);
     newStats.set(this.id, this.valueAsNumber);
@@ -51,36 +61,35 @@ function textUpdate() {
 }
 
 function build_calc(){
-    //implement build math
     if (stats.get('vitality') > (statpoints*0.6))
         build("Warden");
     else if (stats.get('magic') > (statpoints*0.6))
-        build("Warden");
+        build("Mage");
     else if (stats.get('weapons') > (statpoints*0.6))
-        build("Warden");
+        build("Warrior");
     else if (stats.get('strength') > (statpoints*0.6))
-        build("Warden");
+        build("Bezerker");
 
     else if (stats.get('vitality') >= (statpoints*0.4) && stats.get('magic') >= (statpoints*0.4))
-        document.getElementById('build').innerHTML = "Paladin";    
+        build("Paladin")   
     else if (stats.get('vitality') >= (statpoints*0.4) && stats.get('weapons') >= (statpoints*0.4))
-        document.getElementById('build').innerHTML = "Knight";
+        build("Knight");
     else if (stats.get('vitality') >= (statpoints*0.4) && stats.get('strength') >= (statpoints*0.4))
-        document.getElementById('build').innerHTML = "Juggernaut";
+        build("Juggernaut");
         
     else if (stats.get('magic') >= (statpoints*0.4) && stats.get('weapons') >= (statpoints*0.4))
-        document.getElementById('build').innerHTML = "Conjurer";
+        build("Conjurer");
     else if (stats.get('magic') >= (statpoints*0.4) && stats.get('strength') >= (statpoints*0.4))
-        document.getElementById('build').innerHTML = "Warlock";      
+        build("Warlock");      
 
     else if (stats.get('weapons') >= (statpoints*0.4) && stats.get('strength') >= (statpoints*0.4))
-        document.getElementById('build').innerHTML = "Warlord"; 
+        build("Warlord"); 
     else
-        document.getElementById('build').innerHTML = "Savant"; 
+        build("Savant"); 
 }
 
-function build(text){
-    const builds = JSON.parse(fetch("./builds.json"));
+async function build(text){
+    const builds = await fetchJSONData("./builds.json");
     color = builds[text].color;
     document.getElementById('build').innerHTML = text;
     document.getElementById('build').style.color = color;

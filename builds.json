@@ -1,35 +1,35 @@
 {
     "Warden": { 
         "stats":["Vitality"],
-        "color":"#color"},
+        "color":"#00FF00"},
     "Mage":{ 
         "stats":["Magic"],
-        "color":"#color"},
+        "color":"#0099FF"},
     "Warrior": { 
         "stats":["Weapons"],
-        "color":"#color"},
+        "color":"#D1D100"},
     "Bezerker":{ 
         "stats":["Strength"],
-        "color":"#color"},
+        "color":"#FF0000"},
     "Paladin":{ 
         "stats":["Vitality", "Magic"],
-        "color":"#color"},
+        "color":"#22EEBB"},
     "Knight":{ 
         "stats":["Vitality","Weapons"],
-        "color":"#color"},
+        "color":"#ABFF00"},
     "Juggernaut":{ 
         "stats":["Vitality","Magic"],
-        "color":"#color"},
+        "color":"#AA7744"},
     "Conjurer":{ 
         "stats":["Magic", "Weapons"],
-        "color":"#color"},
+        "color":"#99BBEE"},
     "Warlock":{ 
         "stats":["Magic", "Strength"],
-        "color":"#color"},
+        "color":"#FF33AA"},
     "Warlord":{ 
         "stats":["Weapons", "Strength"],
-        "color":"#color"},
+        "color":"#ffbb00"},
     "Savant":{ 
         "stats":["Vitality", "Magic", "Weapons"],
-        "color":"#color"}
+        "color":"#000000"}
 }
