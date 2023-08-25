@@ -30,6 +30,6 @@
         "stats":["Weapons", "Strength"],
         "color":"#ffbb00"},
     "Savant":{ 
-        "stats":["Vitality", "Magic", "Weapons"],
+        "stats":["Vitality", "Magic", "Weapons", "Strength"],
         "color":"#000000"}
 }
