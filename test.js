@@ -1,7 +1,7 @@
 const maxLevel = 125;
 
 var statpoints = maxLevel*2;
-
+var remaining_points = maxLevel*2;
 
 var stats = new Map([['vitality', 0], ['magic', 0], ['weapons', 0], ['strength', 0]]);
 
@@ -15,8 +15,9 @@ function limitCheck(map, limit){
     var sum = 0;
     map.forEach(element => {
         sum+= element
+        
     });
-    
+    remaining_points = statpoints-sum;
     return (sum > limit);
 
 }
@@ -34,8 +35,10 @@ async function fetchJSONData(url) {
 function sliderUpdate() {
     var newStats = new Map(stats);
     newStats.set(this.id, this.valueAsNumber);
-    if (!limitCheck(newStats, statpoints))
+    if (!limitCheck(newStats, statpoints)){
         stats = newStats;
+        document.getElementById("remaining").innerHTML = "Remaining: "+remaining_points
+    }
     else
         this.valueAsNumber = stats.get(this.id);
     document.getElementById(this.id+'-text').value = this.value;
@@ -52,12 +55,12 @@ function textUpdate() {
     if (!limitCheck(newStats, statpoints)){
         stats = newStats;
         document.getElementById(id).value = int;
+        document.getElementById("remaining").innerHTML = "Remaining: "+remaining_points
     }
     else
         this.value = String(stats.get(id));
     console.log(stats);
     build_calc();
-    
 }
 
 function build_calc(){
