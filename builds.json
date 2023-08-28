@@ -1,35 +1,46 @@
 {
     "Warden": { 
         "stats":["Vitality"],
-        "color":"#00FF00"},
+        "color":"#00FF00",
+        "imbues":false},
     "Mage":{ 
         "stats":["Magic"],
-        "color":"#0099FF"},
+        "color":"#0099FF",
+        "imbues":false},
     "Warrior": { 
         "stats":["Weapons"],
-        "color":"#D1D100"},
+        "color":"#D1D100",
+        "imbues":false},
     "Bezerker":{ 
         "stats":["Strength"],
-        "color":"#FF0000"},
+        "color":"#FF0000",
+        "imbues":false},
     "Paladin":{ 
         "stats":["Vitality", "Magic"],
-        "color":"#22EEBB"},
+        "color":"#22EEBB",
+        "imbues":false},
     "Knight":{ 
         "stats":["Vitality","Weapons"],
-        "color":"#ABFF00"},
+        "color":"#ABFF00",
+        "imbues":false},
     "Juggernaut":{ 
         "stats":["Vitality","Magic"],
-        "color":"#AA7744"},
+        "color":"#AA7744",
+        "imbues":false},
     "Conjurer":{ 
         "stats":["Magic", "Weapons"],
-        "color":"#99BBEE"},
+        "color":"#99BBEE",
+        "imbues":true},
     "Warlock":{ 
         "stats":["Magic", "Strength"],
-        "color":"#FF33AA"},
+        "color":"#FF33AA",
+        "imbues":true},
     "Warlord":{ 
         "stats":["Weapons", "Strength"],
-        "color":"#ffbb00"},
+        "color":"#ffbb00",
+        "imbues":true},
     "Savant":{ 
         "stats":["Vitality", "Magic", "Weapons", "Strength"],
-        "color":"#000000"}
+        "color":"#000000",
+        "imbues":false}
 }
