@@ -65,3 +65,17 @@
       flex: 1 1 50px;
   }
 
+  .tables{
+    display: flex;
+    margin: 30px 100px ;
+  }
+  .mtable1 {
+    background-color: #3ddd48;
+    margin: auto;
+    width: 24%;
+  }
+  .mtable2 {
+    background-color: #aa3ddd;
+    margin: auto;
+    width: 24%;
+  }
