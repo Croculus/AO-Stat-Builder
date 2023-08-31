@@ -36,7 +36,7 @@
         <table class="magicTable">
           <tbody>
             <tr>
-              <td><img src="images/magics/Acid.png" width="48px"></td>
+              <td id="Acid" onclick="test()"><img src="images/magics/Acid.png" width="48px"></td>
               <td><img src="images/magics/Ash.png" width="48px"></td>
               <td><img src="images/magics/Crystal.png" width="48px"></td>
               <td><img src="images/magics/Earth.png" width="48px"></td>
@@ -97,5 +97,11 @@
       
       
 <script src="test.js"></script>
+<script>
+  function test(){
+    document.getElementById('Acid').style.backgroundColor = "#16181a";
+    document.getElementById('Acid').style.cursor = "default";
+  }
+</script>
 </body>
 </html>

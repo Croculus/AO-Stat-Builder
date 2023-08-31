@@ -78,6 +78,8 @@
     background-color: #666869;
     padding: 1px 5px;
     text-align: center;
+    cursor: pointer;
+    transition: background-color 0.5s ease-out;
   }
   .fsTable {
     background-color: #dd503d;
@@ -88,4 +90,6 @@
   .fsTable > tbody > tr > td {
     background-color: #666869;
     text-align: center;
+    cursor: pointer;
+    transition: background-color 0.5s ease-out;
   }
