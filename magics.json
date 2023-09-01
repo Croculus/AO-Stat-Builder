@@ -1,0 +1,54 @@
+{
+    "Acid":{
+        "name":"Acid",
+        "damage": 0.875,
+        "speed": 1.0,
+        "size": 1.0,
+        "variants":[["Green", "#01a434"], ["Purple", "#bf00f5"]],
+        "effect":"Corroding",
+        "syngergies":{
+            "Bleed": [0.1],
+            "Corroding": [0.05],
+            "Petrified": [0.2, "clear"],
+            "Melting": [0.1],
+            "Charred": [0.1],
+            "Sweating": [0.1],
+            "Poisoned": [0.1],
+            "Snowy": [0, "clear"],
+            "Burning": [0.1],
+            "Scalded": [0.1],
+            "Scorched": [0.1],
+            "Freezing": [0, "clear"],
+            "Sandy": [-0.1, "clear"],
+            "Soaked": [-0.1],
+            "Crystallized": [-0.1],
+            "Frozen": [0.2, "clear"]
+        }
+    },
+    "Ash":{
+        "name":"Acid",
+        "damage": 0.875,
+        "speed": 1.0,
+        "size": 1.0,
+        "variants":[["Green", "#01a434"], ["Purple", "#bf00f5"]],
+        "effect":"Corroding",
+        "syngergies":{
+            "Bleed": [0.1],
+            "Corroding": [0.05],
+            "Petrified": [0.2, "clear"],
+            "Melting": [0.1],
+            "Charred": [0.1],
+            "Sweating": [0.1],
+            "Poisoned": [0.1],
+            "Snowy": [0, "clear"],
+            "Burning": [0.1],
+            "Scalded": [0.1],
+            "Scorched": [0.1],
+            "Freezing": [0, "clear"],
+            "Sandy": [-0.1, "clear"],
+            "Soaked": [-0.1],
+            "Crystallized": [-0.1],
+            "Frozen": [0.2, "clear"]
+        }
+    }
+}

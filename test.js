@@ -9,6 +9,21 @@ var sliders = document.getElementsByClassName('slider');
 
 var basehp = 968+(2*stats.get('vitality'));
 
+var magicData = null;
+var buildData = null;
+
+class Magic {
+    constructor(name){
+        this.name = name
+        this.damage = magicData[this.name].damage
+        this.speed = magicData[this.name].speed
+        this.size = magicData[this.name].size
+    }
+
+    toString() {
+        return this.name + " Damage: "+this.damage+" Speed: "+this.speed+" Size: "+this.size;
+    }
+}
 
 
 function limitCheck(map, limit){
@@ -20,6 +35,19 @@ function limitCheck(map, limit){
     remaining_points = statpoints-sum;
     return (sum > limit);
 
+}
+async function fetchMagicData() {
+    if (magicData === null) {
+        magicData = await fetchJSONData("./magics.json");
+    }
+    return magicData;
+}
+
+async function fetchBuildData() {
+    if (buildData === null) {
+        buildData = await fetchJSONData("./builds.json");
+    }
+    return buildData;
 }
 
 async function fetchJSONData(url) {
@@ -42,7 +70,6 @@ function sliderUpdate() {
     else
         this.valueAsNumber = stats.get(this.id);
     document.getElementById(this.id+'-text').value = this.value;
-    console.log(stats);
     build_calc();
 }
 
@@ -59,7 +86,6 @@ function textUpdate() {
     }
     else
         this.value = String(stats.get(id));
-    console.log(stats);
     build_calc();
 }
 
@@ -92,15 +118,18 @@ function build_calc(){
 }
 
 async function build(text){
-    const builds = await fetchJSONData("./builds.json");
-    color = builds[text].color;
+    color = buildData[text].color;
     document.getElementById('build').innerHTML = text;
     document.getElementById('build').style.color = color;
 }
-function load(){
+
+
+async function load(){
     for( let i = 0; i < sliders.length; i++){
         sliders[i].oninput = sliderUpdate;
         document.getElementsByClassName('input-text')[i].oninput = textUpdate;
     }
-
+    await fetchBuildData();
+    await fetchMagicData();
+    console.log();
 }
