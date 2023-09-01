@@ -11,6 +11,9 @@ var basehp = 968+(2*stats.get('vitality'));
 
 var magicData = null;
 var buildData = null;
+var fstyleData = null;
+
+var table_selection = [];
 
 class Magic {
     constructor(name){
@@ -18,13 +21,26 @@ class Magic {
         this.damage = magicData[this.name].damage
         this.speed = magicData[this.name].speed
         this.size = magicData[this.name].size
+        this.effect = magicData[this.name].effect
     }
+
+
 
     toString() {
         return this.name + " Damage: "+this.damage+" Speed: "+this.speed+" Size: "+this.size;
     }
 }
 
+
+class Fstyle {
+    constructor(name){
+        this.name = name
+        this.damage = fstyleData[this.name].damage
+        this.speed = fstyleData[this.name].speed
+        this.size = fstyleData[this.name].size
+        this.effect = fstylData[this.name].effect
+    }
+}
 
 function limitCheck(map, limit){
     var sum = 0;
@@ -36,18 +52,17 @@ function limitCheck(map, limit){
     return (sum > limit);
 
 }
-async function fetchMagicData() {
+async function loadData() {
     if (magicData === null) {
         magicData = await fetchJSONData("./magics.json");
     }
-    return magicData;
-}
-
-async function fetchBuildData() {
     if (buildData === null) {
         buildData = await fetchJSONData("./builds.json");
     }
-    return buildData;
+    if (fstyleData === null) {
+        fstyleData = await fetchJSONData("./fstyles.json");
+    }
+    return undefined;
 }
 
 async function fetchJSONData(url) {
@@ -129,7 +144,6 @@ async function load(){
         sliders[i].oninput = sliderUpdate;
         document.getElementsByClassName('input-text')[i].oninput = textUpdate;
     }
-    await fetchBuildData();
-    await fetchMagicData();
+    await loadData();
     console.log();
 }
