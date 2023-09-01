@@ -106,37 +106,51 @@ function textUpdate() {
 
 function build_calc(){
     if (stats.get('vitality') > (statpoints*0.6))
-        build("Warden");
+        loadBuild("Warden");
     else if (stats.get('magic') > (statpoints*0.6))
-        build("Mage");
+        loadBuild("Mage");
     else if (stats.get('weapons') > (statpoints*0.6))
-        build("Warrior");
+        loadBuild("Warrior");
     else if (stats.get('strength') > (statpoints*0.6))
-        build("Bezerker");
+        loadBuild("Bezerker");
 
     else if (stats.get('vitality') >= (statpoints*0.4) && stats.get('magic') >= (statpoints*0.4))
-        build("Paladin")   
+        loadBuild("Paladin")   
     else if (stats.get('vitality') >= (statpoints*0.4) && stats.get('weapons') >= (statpoints*0.4))
-        build("Knight");
+        loadBuild("Knight");
     else if (stats.get('vitality') >= (statpoints*0.4) && stats.get('strength') >= (statpoints*0.4))
-        build("Juggernaut");
+        loadBuild("Juggernaut");
         
     else if (stats.get('magic') >= (statpoints*0.4) && stats.get('weapons') >= (statpoints*0.4))
-        build("Conjurer");
+        loadBuild("Conjurer");
     else if (stats.get('magic') >= (statpoints*0.4) && stats.get('strength') >= (statpoints*0.4))
-        build("Warlock");      
+        loadBuild("Warlock");      
 
     else if (stats.get('weapons') >= (statpoints*0.4) && stats.get('strength') >= (statpoints*0.4))
-        build("Warlord"); 
+        loadBuild("Warlord"); 
     else
-        build("Savant"); 
+        loadBuild("Savant"); 
 }
 
-async function build(text){
-    color = buildData[text].color;
+async function loadBuild(text){
+    build = buildData[text]
+    color = build.color;
     document.getElementById('build').innerHTML = text;
     document.getElementById('build').style.color = color;
+    for(let i = 0; i < build.tabs.length; i++){
+        generateTab(build.tabs[i])
+    }
 }
+
+async function generateTab(text){
+    if (text === "Magic"){
+        table = document.createElement("table");
+        table.setAttribute("class", "magicTable");
+        
+    }
+}
+
+
 
 
 async function load(){
