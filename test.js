@@ -144,6 +144,7 @@ async function loadBuild(text){
 
 async function generateTab(text){
     if (text === "Magic"){
+        div = document.getElementById("tables");
         table = document.createElement("table");
         table.setAttribute("class", "magicTable");
         

@@ -65,7 +65,7 @@
       flex: 1 1 50px;
   }
 
-  .tables{
+  #tables{
     display: flex;
     margin-top: 30px;
   }
