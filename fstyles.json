@@ -1,15 +1,15 @@
 {
-    "Basic Combat":{
-        "name": "Basic"
+    "Basic":{
+        "name": "Basic Combot"
     },
     "Boxing":{
         "name": "Boxing"
     },
-    "Cfist":{
+    "CannonFist":{
         "name": "Cannon Fist"
     },
 
-    "Ileg":{
+    "IronLeg":{
         "name": "Iron Leg"
     },
     "Sailor":{

@@ -155,12 +155,48 @@ async function loadBuild(text){
 }
 
 async function generateTab(text){
-    if (text === "Magic"){
-        div = document.getElementById("tables");
-        table = document.createElement("table");
-        table.setAttribute("class", "magicTable");
-        
+    if (text === "Weapons" || text === "Vitality"){
+        return undefined;
     }
+    if (text === "magic"){
+        var numRows = 4; 
+        var numCols = 5;
+        var arr_type = magics;
+    }
+    else if (text === "fstyle"){
+        var numRows = 2; 
+        var numCols = 3;
+        var arr_type = fstyles;
+    }
+    let div = document.getElementById("tables");
+    let table = document.createElement("table");
+    table.setAttribute("class", text+"Table");
+    let tbody = document.createElement("tbody");
+
+    for (let i = 0; i < numRows+0; i++) {
+        // Create a table row element
+        let row = document.createElement("tr");
+    
+        for (let j = 0; j < numCols; j++) {
+            let element = arr_type[(i*numCols)+j]; //refers to magics array
+
+            // Create a table cell element (td)
+            let cell = document.createElement("td"); 
+            cell.setAttribute("id", element.name);
+
+            let image = document.createElement("img");
+            image.setAttribute("src", "images/"+text+"s/"+element.name+".png");
+            image.setAttribute("width", "48px");
+            cell.appendChild(image);
+            // Append the cell to the row
+            row.appendChild(cell);
+        }
+    
+        // Append the row to the table body
+        tbody.appendChild(row);
+        }
+    table.appendChild(tbody);
+    div.appendChild(table);
 }
 
 
