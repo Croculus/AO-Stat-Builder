@@ -10,24 +10,26 @@ var sliders = document.getElementsByClassName('slider');
 var basehp = 968+(2*stats.get('vitality'));
 
 var magicData = null;
-var buildData = null;
+var magics = [];
 var fstyleData = null;
+var fstyles = [];
+var buildData = null;
 
 var table_selection = [];
 
 class Magic {
     constructor(name){
         this.name = name
-        this.damage = magicData[this.name].damage
-        this.speed = magicData[this.name].speed
-        this.size = magicData[this.name].size
-        this.effect = magicData[this.name].effect
+        //this.damage = magicData[this.name].damage
+        //this.speed = magicData[this.name].speed
+        //this.size = magicData[this.name].size
+        //this.effect = magicData[this.name].effect
     }
 
 
 
     toString() {
-        return this.name + " Damage: "+this.damage+" Speed: "+this.speed+" Size: "+this.size;
+        return this.name //+ " Damage: "+this.damage+" Speed: "+this.speed+" Size: "+this.size;
     }
 }
 
@@ -35,10 +37,10 @@ class Magic {
 class Fstyle {
     constructor(name){
         this.name = name
-        this.damage = fstyleData[this.name].damage
-        this.speed = fstyleData[this.name].speed
-        this.size = fstyleData[this.name].size
-        this.effect = fstylData[this.name].effect
+        //this.damage = fstyleData[this.name].damage
+        //this.speed = fstyleData[this.name].speed
+        //this.size = fstyleData[this.name].size
+        //this.effect = fstylData[this.name].effect
     }
 }
 
@@ -55,13 +57,23 @@ function limitCheck(map, limit){
 async function loadData() {
     if (magicData === null) {
         magicData = await fetchJSONData("./magics.json");
+        let iter = Object.keys(magicData)
+        for(let i = 0; i < iter.length; i++){
+             magics.push(new Magic(iter[i]))   
+        }
+
+    }
+    if (fstyleData === null) {
+        fstyleData = await fetchJSONData("./fstyles.json");
+        let iter = Object.keys(fstyleData)
+        for(let i = 0; i < iter.length; i++){
+             fstyles.push(new Fstyle(iter[i]))   
+        }
     }
     if (buildData === null) {
         buildData = await fetchJSONData("./builds.json");
     }
-    if (fstyleData === null) {
-        fstyleData = await fetchJSONData("./fstyles.json");
-    }
+    
     return undefined;
 }
 

@@ -1,0 +1,21 @@
+{
+    "Basic Combat":{
+        "name": "Basic"
+    },
+    "Boxing":{
+        "name": "Boxing"
+    },
+    "Cfist":{
+        "name": "Cannon Fist"
+    },
+
+    "Ileg":{
+        "name": "Iron Leg"
+    },
+    "Sailor":{
+        "name": "Sailor Fist"
+    },
+    "Thermo":{
+        "name": "Thermo Fist"
+    }
+}
