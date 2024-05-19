@@ -1,7 +1,7 @@
-const maxLevel = 125;
+const maxLevel = 136;
 
 var statpoints = maxLevel*2;
-var remaining_points = maxLevel*2;
+var remaining_points = statpoints;
 
 var stats = new Map([['vitality', 0], ['magic', 0], ['weapons', 0], ['strength', 0]]);
 
@@ -202,11 +202,19 @@ async function generateTab(text){
 
 
 
-async function load(){
+async function update(){
     for( let i = 0; i < sliders.length; i++){
         sliders[i].oninput = sliderUpdate;
         document.getElementsByClassName('input-text')[i].oninput = textUpdate;
     }
-    await loadData();
-    console.log();
 }
+
+async function load(){
+    document.getElementById('remaining').innerHTML = "Remaining: "+String(remaining_points);
+    for( let i = 0; i < sliders.length; i++){
+        sliders[i].setAttribute('max', statpoints); 
+    }
+    await update();
+    await loadData();
+}
+
