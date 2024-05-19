@@ -24,7 +24,7 @@
         "color":"#ABFF00",
         "imbues":false},
     "Juggernaut":{ 
-        "tabs":["magic","Vitality"],
+        "tabs":["fstyle","Vitality"],
         "color":"#AA7744",
         "imbues":false},
     "Conjurer":{ 
