@@ -145,13 +145,18 @@ function build_calc(){
 }
 
 async function loadBuild(text){
-    build = buildData[text]
+    build = buildData[text];
     color = build.color;
     document.getElementById('build').innerHTML = text;
     document.getElementById('build').style.color = color;
+    deleteTabs();
     for(let i = 0; i < build.tabs.length; i++){
-        generateTab(build.tabs[i])
+        generateTab(build.tabs[i]);
     }
+}
+
+async function deleteTabs(){
+    tables = document.getElementById("tables").innerHTML = ""
 }
 
 async function generateTab(text){
