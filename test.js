@@ -184,11 +184,15 @@ async function generateTab(text){
     
         for (let j = 0; j < numCols; j++) {
             let element = arr_type[(i*numCols)+j]; //refers to magics array
-
+            if (element == undefined){
+                continue
+            }
             // Create a table cell element (td)
             let cell = document.createElement("td"); 
             cell.setAttribute("id", element.name);
-
+            cell.addEventListener('click', function() 
+            {test(element.name)}
+        )
             let image = document.createElement("img");
             image.setAttribute("src", "images/"+text+"s/"+element.name+".png");
             image.setAttribute("width", "48px");
@@ -223,3 +227,7 @@ async function load(){
     await loadData();
 }
 
+async function test(id){
+    document.getElementById(id).style.backgroundColor = "#16181a";
+    document.getElementById(id).style.cursor = "default";
+    }
