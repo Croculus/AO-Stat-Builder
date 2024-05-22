@@ -40,7 +40,7 @@
         "color":"#ffbb00",
         "imbues":true},
     "Savant":{ 
-        "tabs":["magic", "fstyle","Weapons", "Vitality", "Choice" ],
+        "tabs":["magic", "fstyle","Choice","Weapons", "Vitality"],
         "color":"#000000",
         "imbues":false}
 }

@@ -155,7 +155,7 @@ async function loadBuild(text){
     }
 }
 
-async function deleteTabs(){
+ function deleteTabs(){
     tables = document.getElementById("tables").innerHTML = ""
 }
 
@@ -173,6 +173,7 @@ async function generateTab(text){
         var numCols = 3;
         var arr_type = fstyles;
     }
+    var tableindex = document.getElementsByClassName(text+"Table").length
     let div = document.getElementById("tables");
     let table = document.createElement("table");
     table.setAttribute("class", text+"Table");
@@ -189,9 +190,9 @@ async function generateTab(text){
             }
             // Create a table cell element (td)
             let cell = document.createElement("td"); 
-            cell.setAttribute("id", element.name);
+            cell.setAttribute("id", element.name+tableindex);
             cell.addEventListener('click', function() 
-            {test(element.name)}
+            {select(element.name+tableindex)}
         )
             let image = document.createElement("img");
             image.setAttribute("src", "images/"+text+"s/"+element.name+".png");
@@ -227,7 +228,7 @@ async function load(){
     await loadData();
 }
 
-async function test(id){
+async function select(id){
     document.getElementById(id).style.backgroundColor = "#16181a";
     document.getElementById(id).style.cursor = "default";
     }
