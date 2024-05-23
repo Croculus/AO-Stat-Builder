@@ -15,7 +15,7 @@ var fstyleData = null;
 var fstyles = [];
 var buildData = null;
 
-var table_selection = [];
+var table_selection = {};
 
 class Magic {
     constructor(name){
@@ -82,7 +82,8 @@ async function fetchJSONData(url) {
       const response = await fetch(url);
       const jsonData = await response.json();
       return jsonData;
-    } catch (error) {
+    } 
+    catch (error) {
       console.error("Error fetching JSON:", error);
     }
   }
@@ -159,24 +160,26 @@ async function loadBuild(text){
     tables = document.getElementById("tables").innerHTML = ""
 }
 
-async function generateTab(text){
-    if (text === "Weapons" || text === "Vitality"){
+async function generateTab(skill){
+    if (skill === "Weapons" || skill === "Vitality"){
         return undefined;
     }
-    if (text === "magic"){
+    if (skill === "magic"){
         var numRows = 4; 
         var numCols = 5;
         var arr_type = magics;
     }
-    else if (text === "fstyle"){
+    else if (skill === "fstyle"){
         var numRows = 2; 
         var numCols = 3;
         var arr_type = fstyles;
     }
-    var tableindex = document.getElementsByClassName(text+"Table").length
+    var tableIndex = document.getElementsByClassName(skill+"Table").length;
+    var tableID = skill+tableIndex;
     let div = document.getElementById("tables");
     let table = document.createElement("table");
-    table.setAttribute("class", text+"Table");
+    table.setAttribute("class", skill+"Table");
+    table.setAttribute("id", tableID);
     let tbody = document.createElement("tbody");
 
     for (let i = 0; i < numRows+0; i++) {
@@ -190,12 +193,12 @@ async function generateTab(text){
             }
             // Create a table cell element (td)
             let cell = document.createElement("td"); 
-            cell.setAttribute("id", element.name+tableindex);
+            cell.setAttribute("id", element.name+tableIndex);
             cell.addEventListener('click', function() 
-            {select(element.name+tableindex)}
+            {select(element.name, tableID)}
         )
             let image = document.createElement("img");
-            image.setAttribute("src", "images/"+text+"s/"+element.name+".png");
+            image.setAttribute("src", "images/"+skill+"s/"+element.name+".png");
             image.setAttribute("width", "48px");
             cell.appendChild(image);
             // Append the cell to the row
@@ -228,7 +231,18 @@ async function load(){
     await loadData();
 }
 
-async function select(id){
-    document.getElementById(id).style.backgroundColor = "#16181a";
-    document.getElementById(id).style.cursor = "default";
+async function select(magic_fs, table){
+    index=table.slice(-1); //gets index of table from the tableid
+    if(table_selection[table] != undefined){
+        old_skill = document.getElementById(table_selection[table]+index).style;
+        old_skill.backgroundColor = "#666869";
+        old_skill.cursor = "pointer";
+    }
+
+    //selecting new figure
+    
+    document.getElementById(magic_fs+index).style.backgroundColor = "#16181a";
+    document.getElementById(magic_fs+index).style.cursor = "default";
+    table_selection[table] = magic_fs;
+    console.log(table_selection);
     }
