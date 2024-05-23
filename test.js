@@ -17,6 +17,13 @@ var buildData = null;
 
 var table_selection = {};
 
+class Table{
+    constructor(skill, name, id){
+        this.skill = skill
+        this.name = name
+    }
+}
+
 class Magic {
     constructor(name){
         this.name = name
