@@ -157,7 +157,9 @@ async function loadBuild(text){
 }
 
  function deleteTabs(){
-    tables = document.getElementById("tables").innerHTML = ""
+    tables = document.getElementById("tables").innerHTML = "";
+    table_selection = {}; //reset table selection
+
 }
 
 async function generateTab(skill){
@@ -232,6 +234,7 @@ async function load(){
 }
 
 async function select(magic_fs, table){
+    //unselect oldskill
     index=table.slice(-1); //gets index of table from the tableid
     if(table_selection[table] != undefined){
         old_skill = document.getElementById(table_selection[table]+index).style;
@@ -240,9 +243,9 @@ async function select(magic_fs, table){
     }
 
     //selecting new figure
-    
-    document.getElementById(magic_fs+index).style.backgroundColor = "#16181a";
-    document.getElementById(magic_fs+index).style.cursor = "default";
+    new_skill =  document.getElementById(magic_fs+index).style;
+    new_skill.backgroundColor = "#16181a";
+    new_skill.cursor = "default";
     table_selection[table] = magic_fs;
     console.log(table_selection);
     }
