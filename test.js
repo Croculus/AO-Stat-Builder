@@ -15,13 +15,82 @@ var fstyleData = null;
 var fstyles = [];
 var buildData = null;
 
-var table_selection = {};
+var tables = [];
 
 class Table{
-    constructor(skill, name, id){
-        this.skill = skill
-        this.name = name
+    constructor(type){
+        this.type = type;
+        this.index = document.getElementsByClassName(type+"Table").length;
+        this.selection = null;
+        
+        this.tableID = type+this.index;
+
     }
+    buildTable(){
+        if (this.type === "magic"){
+            this.numRows = 4; 
+            this.numCols = 5;
+            this.arr_type = magics;
+
+        }
+        else if (this.type === "fstyle"){
+            this.numRows = 2; 
+            this.numCols = 3;
+            this.arr_type = fstyles;
+        }
+        let div = document.getElementById("tables");
+        let tableElement = document.createElement("table");
+        tableElement.setAttribute("class", this.type+"Table");
+        tableElement.setAttribute("id", this.tableID);
+        let tbody = document.createElement("tbody");
+
+        for (let i = 0; i < this.numRows+0; i++) {
+            // Create a table row element
+            let row = document.createElement("tr");
+        
+            for (let j = 0; j < this.numCols; j++) {
+                let element = this.arr_type[(i*this.numCols)+j]; //refers to magics array
+                if (element == undefined){
+                    continue
+                }
+                // Create a table cell element (td)
+                let cell = document.createElement("td"); 
+                cell.setAttribute("id", element.name+this.index);
+                cell.addEventListener('click', ()=> 
+                {this.select(element.name, this.tableID)}
+            )
+                let image = document.createElement("img");
+                image.setAttribute("src", "images/"+this.type+"s/"+element.name+".png");
+                image.setAttribute("width", "48px");
+                cell.appendChild(image);
+                // Append the cell to the row
+                row.appendChild(cell);
+            }
+        
+            // Append the row to the table body
+            tbody.appendChild(row);
+            }
+        tableElement.appendChild(tbody);
+        div.appendChild(tableElement);
+    }
+
+    select(element, table){
+        //unselect oldskill
+        if(this.selection != null){
+            let old_skill = document.getElementById(this.selection+this.index).style;
+            old_skill.backgroundColor = "#666869";
+            old_skill.cursor = "pointer";
+        }
+    
+        //selecting new figure
+        let new_skill =  document.getElementById(element+this.index).style;
+        new_skill.backgroundColor = "#16181a";
+        new_skill.cursor = "default";
+        this.selection = element;
+        console.log(tables.map(x => x.selection));
+        }
+    
+    
 }
 
 class Magic {
@@ -159,18 +228,18 @@ async function loadBuild(text){
     document.getElementById('build').style.color = color;
     deleteTabs();
     for(let i = 0; i < build.tabs.length; i++){
-        generateTab(build.tabs[i]);
+        generateTable(build.tabs[i]);
     }
 }
 
  function deleteTabs(){
-    tables = document.getElementById("tables").innerHTML = "";
+    deletetables = document.getElementById("tables").innerHTML = "";
     table_selection = {}; //reset table selection
 
 }
 
-async function generateTab(skill){
-    if (skill === "Weapons" || skill === "Vitality"){
+async function generateTable(skill){
+    if (skill === "Weapons" || skill === "Vitality" || skill === "Choice"){
         return undefined;
     }
     if (skill === "magic"){
@@ -183,8 +252,15 @@ async function generateTab(skill){
         var numCols = 3;
         var arr_type = fstyles;
     }
-    var tableIndex = document.getElementsByClassName(skill+"Table").length;
-    var tableID = skill+tableIndex;
+
+    // need to add class interpretation here
+    
+    //var tableIndex = document.getElementsByClassName(skill+"Table").length;
+    let tableClass = new Table(skill);
+    tableClass.buildTable();
+    tables.push(tableClass);
+    //var tableID = skill+tableIndex;
+    /*
     let div = document.getElementById("tables");
     let table = document.createElement("table");
     table.setAttribute("class", skill+"Table");
@@ -219,6 +295,7 @@ async function generateTab(skill){
         }
     table.appendChild(tbody);
     div.appendChild(table);
+    */
 }
 
 
@@ -242,14 +319,15 @@ async function load(){
 
 async function select(magic_fs, table){
     //unselect oldskill
-    index=table.slice(-1); //gets index of table from the tableid
+    index=table.slice(-1); //gets index of table from the tableid from last character
     if(table_selection[table] != undefined){
+        //resetting old element
         old_skill = document.getElementById(table_selection[table]+index).style;
         old_skill.backgroundColor = "#666869";
         old_skill.cursor = "pointer";
     }
 
-    //selecting new figure
+    //selecting new element
     new_skill =  document.getElementById(magic_fs+index).style;
     new_skill.backgroundColor = "#16181a";
     new_skill.cursor = "default";
