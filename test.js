@@ -231,7 +231,8 @@ async function loadBuild(text){
     document.getElementById('build').style.color = color;
     deleteTabs();
     for(let i = 0; i < build.tabs.length; i++){
-        generateTable(build.tabs[i]);
+        if (build.tabs[i] == "magic" || build.tabs[i] == "fstyle"){
+        generateTable(build.tabs[i]);}
     }
 }
 
@@ -242,63 +243,10 @@ async function loadBuild(text){
 }
 
 async function generateTable(skill){
-    if (skill === "Weapons" || skill === "Vitality" || skill === "Choice"){
-        return undefined;
-    }
-    if (skill === "magic"){
-        var numRows = 4; 
-        var numCols = 5;
-        var arr_type = magics;
-    }
-    else if (skill === "fstyle"){
-        var numRows = 2; 
-        var numCols = 3;
-        var arr_type = fstyles;
-    }
 
-    // need to add class interpretation here
-    
-    //var tableIndex = document.getElementsByClassName(skill+"Table").length;
     let tableClass = new Table(skill);
     tableClass.buildTable();
     tables.push(tableClass);
-    //var tableID = skill+tableIndex;
-    /*
-    let div = document.getElementById("tables");
-    let table = document.createElement("table");
-    table.setAttribute("class", skill+"Table");
-    table.setAttribute("id", tableID);
-    let tbody = document.createElement("tbody");
-
-    for (let i = 0; i < numRows+0; i++) {
-        // Create a table row element
-        let row = document.createElement("tr");
-    
-        for (let j = 0; j < numCols; j++) {
-            let element = arr_type[(i*numCols)+j]; //refers to magics array
-            if (element == undefined){
-                continue
-            }
-            // Create a table cell element (td)
-            let cell = document.createElement("td"); 
-            cell.setAttribute("id", element.name+tableIndex);
-            cell.addEventListener('click', function() 
-            {select(element.name, tableID)}
-        )
-            let image = document.createElement("img");
-            image.setAttribute("src", "images/"+skill+"s/"+element.name+".png");
-            image.setAttribute("width", "48px");
-            cell.appendChild(image);
-            // Append the cell to the row
-            row.appendChild(cell);
-        }
-    
-        // Append the row to the table body
-        tbody.appendChild(row);
-        }
-    table.appendChild(tbody);
-    div.appendChild(table);
-    */
 }
 
 
