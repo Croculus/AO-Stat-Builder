@@ -179,6 +179,9 @@ function sliderUpdate() {
 
 function textUpdate() {
     const int = Math.abs(parseInt(this.value));
+    if (isNaN(int)){ 
+        this.value = 0;
+        return}
     const id = this.id.replace('-text', '')
     var newStats = new Map(stats);
 
