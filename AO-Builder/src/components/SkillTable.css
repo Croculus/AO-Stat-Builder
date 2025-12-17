@@ -1,0 +1,53 @@
+.skill-table-container {
+  margin: 2rem 0;
+  padding: 1rem;
+  background: #222;
+  border-radius: 8px;
+  border: 1px solid #444;
+}
+
+.table-title {
+  color: #fff;
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+  text-transform: capitalize;
+}
+
+.magicTable,
+.fstyleTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+.magicTable td,
+.fstyleTable td {
+  padding: 0.5rem;
+  text-align: center;
+  cursor: pointer;
+  background-color: #666869;
+  border: 1px solid #555;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.magicTable td:hover,
+.fstyleTable td:hover {
+  background-color: #777;
+}
+
+.skill-cell.selected {
+  background-color: #16181a !important;
+  cursor: default;
+  box-shadow: inset 0 0 8px rgba(76, 175, 80, 0.5);
+}
+
+.magicTable img,
+.fstyleTable img {
+  display: block;
+  margin: 0 auto;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  max-width: 100%;
+  height: auto;
+}
