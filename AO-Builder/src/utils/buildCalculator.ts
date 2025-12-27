@@ -1,7 +1,7 @@
 import type { StatMap, BuildsDatabase } from '../types';
 
 export const calculateBuild = (stats: StatMap, builds: BuildsDatabase): string => {
-  const statPoints = 136 * 2; // maxLevel * 2
+  const statPoints = 140 * 2; // maxLevel * 2; user note: we want this to use the max level in the App
 
   // Single stat dominance (60% threshold)
   if (stats.vitality > statPoints * 0.6) return 'Warden';

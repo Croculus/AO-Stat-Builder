@@ -20,26 +20,31 @@ export interface MagicData {
   syngergies: Record<string, [number, ...string[]]>;
 }
 
+
+ //this is an index signiture, essentially it lets us define as many properties as we want (i.e key in this case),
+//as long as the names of those properties match the type defined initally
 export interface MagicsDatabase {
-  [key: string]: MagicData;
+  [magic: string]: MagicData; 
+  // for example, we can define each magic as a property, and map it name to it's data
 }
 
 export interface FightStyleData {
   name: string;
+  //need to add more
 }
 
 export interface FightStyleDatabase {
-  [key: string]: FightStyleData;
+  [fstyle: string]: FightStyleData;
 }
 
-export interface BuildConfig {
-  tabs: string[];
-  color: string;
-  imbues: boolean;
+export interface BuildConfig { //the actual properties of a corresponing build
+  tabs: string[]; //tabs a given stat build has
+  color: string; // color of tab
+  imbues: boolean; // passing imbuement boolean
 }
 
 export interface BuildsDatabase {
-  [key: string]: BuildConfig;
+  [build: string]: BuildConfig; // lets us store the properties of as many builds as we want (e.g. warrior, savant)
 }
 
 export interface TableItem {
@@ -49,5 +54,5 @@ export interface TableItem {
 }
 
 export interface TableSelection {
-  [tableId: string]: string | null;
+  [tableId: string]: string | null; 
 }

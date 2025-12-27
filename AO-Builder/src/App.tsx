@@ -25,7 +25,7 @@ function App() {
     const loadData = async () => {
       try {
         const [buildsData, magicsData, fstylesData] = await Promise.all([
-          fetch('/builds.json').then((res) => res.json()),
+          fetch('/builds.json').then((res) => res.json()), // takes every build defined and indexes the build database
           fetch('/magics.json').then((res) => res.json()),
           fetch('/fstyles.json').then((res) => res.json()),
         ]);
@@ -43,11 +43,11 @@ function App() {
   useEffect(() => {
     if (builds) {
       const newBuild = calculateBuild(stats, builds);
-      setCurrentBuild(newBuild);
-      setBuildTabs(builds[newBuild]?.tabs || []);
-      setTableSelections({}); // Reset selections when build changes
+      setCurrentBuild(newBuild); 
+      setBuildTabs(builds[newBuild]?.tabs || []); //?. is optional chaining, which lets us safely access elements (returns null instead of errors)
+      // remember, newBuild is a string so we use it as the key to access the 'tabs' property for that build within the buildsDB
     }
-  }, [stats, builds]);
+  }, [stats, builds]); // this line means it runs on start and when stats or builds variables change
 
   const handleSkillSelect = (skillName: string, tableId: string) => {
     setTableSelections((prev) => ({
@@ -56,7 +56,7 @@ function App() {
     }));
   };
 
-  if (!builds || !magics || !fstyles) {
+  if (!builds || !magics || !fstyles) { // case when data not loaded (one of these values is null)
     return (
       <div className="app">
         <h1>AO Stat Builder</h1>
@@ -66,10 +66,8 @@ function App() {
   }
 
   const buildColor = builds[currentBuild]?.color || '#ffffff';
-  const buildTabs_filtered = buildTabs.filter(
-    (tab, index, self) => self.indexOf(tab) === index
-  );
-
+  
+  // make maxLevel a context variable?
   return (
     <div className="app">
       <div className="container">
@@ -78,10 +76,10 @@ function App() {
           {currentBuild}
         </h2>
 
-        <StatSelector stats={stats} maxLevel={136} onStatsChange={setStats} />
+        <StatSelector stats={stats} maxLevel={140} onStatsChange={setStats} />
 
         <div id="tables" className="tables-container">
-          {buildTabs_filtered.map((tab, index) => {
+          {buildTabs.map((tab, index) => {
             if (tab === 'magic') {
               const tableId = `magic${index}`;
               return (
@@ -90,8 +88,8 @@ function App() {
                   type="magic"
                   tableIndex={index}
                   magics={magics}
-                  onSelect={handleSkillSelect}
-                  selectedSkill={tableSelections[tableId] || null}
+                  onSelect={handleSkillSelect} // function to be passed to all icons
+                  selectedSkill={tableSelections[tableId] || null} //we handle skill selection above and pass it into here
                 />
               );
             } else if (tab === 'fstyle') {

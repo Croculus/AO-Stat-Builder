@@ -30,7 +30,7 @@ export const SkillTable = ({
     name: value.name,
   }));
 
-  const numRows = ismagic ? 4 : 2;
+  const numRows = ismagic ? 4 : 2; // Ideally I want to have these numbers not be preset and instead be derived algorithmically
   const numCols = ismagic ? 5 : 3;
 
   const rows = [];
